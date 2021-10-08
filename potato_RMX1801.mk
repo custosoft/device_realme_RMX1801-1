@@ -25,7 +25,7 @@ $(call inherit-product, vendor/potato/config/common_full_phone.mk)
 $(call inherit-product, device/realme/RMX1801/device.mk)
 
 # Set Shipping API level
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
 PRODUCT_NAME := potato_RMX1801
 PRODUCT_DEVICE := RMX1801

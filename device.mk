@@ -18,7 +18,7 @@
 $(call inherit-product, vendor/realme/RMX1801/RMX1801-vendor.mk)
 
 # Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
@@ -32,8 +32,8 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-aosp
 
-#PRODUCT_ENFORCE_RRO_TARGETS := *
-#PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+PRODUCT_ENFORCE_RRO_TARGETS := *
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-aosp
 
 # Soong namespaces
@@ -41,7 +41,8 @@ PRODUCT_SOONG_NAMESPACES += \
     device/realme/RMX1801 \
     hardware/qcom-caf/msm8998/display \
     hardware/qcom-caf/msm8998/audio \
-    hardware/qcom-caf/msm8998/media
+    hardware/qcom-caf/msm8998/media \
+    vendor/qcom/opensource/power
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -203,12 +204,14 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     libhwc2on1adapter \
     libhwc2onfbadapter \
-    libqdMetaData.system \
+    libqdMetaData.vendor \
     libtinyxml \
     libvulkan \
     memtrack.sdm660 \
     vendor.display.config@1.5 \
-    vendor.display.config@1.3.vendor
+    vendor.display.config@1.3.vendor \
+    vendor.display.config@2.0 \
+    vendor.display.config@2.0.vendor
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -416,8 +419,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/excluded-input-devices.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/excluded-input-devices.xml
 
 # Soong
-PRODUCT_SOONG_NAMESPACES += \
-    hardware/qcom/power
+# PRODUCT_SOONG_NAMESPACES += \
+ #   hardware/qcom/power
 
 # Telephony-ext
 PRODUCT_PACKAGES += \
@@ -490,8 +493,8 @@ PRODUCT_HOST_PACKAGES += \
     signapk
 
 # WFD
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+# PRODUCT_BOOT_JARS += \
+ #   WfdCommon
 
 # TinyXML
 PRODUCT_PACKAGES += \
