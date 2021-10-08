@@ -32,12 +32,16 @@ DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-aosp
 
-PRODUCT_ENFORCE_RRO_TARGETS := *
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+#PRODUCT_ENFORCE_RRO_TARGETS := *
+#PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-aosp
 
 # Soong namespaces
-PRODUCT_SOONG_NAMESPACES += device/realme/RMX1801
+PRODUCT_SOONG_NAMESPACES += \
+    device/realme/RMX1801 \
+    hardware/qcom-caf/msm8998/display \
+    hardware/qcom-caf/msm8998/audio \
+    hardware/qcom-caf/msm8998/media
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -156,7 +160,8 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl \
     audio.bluetooth.default \
     libbluetooth_audio_session \
-    libbthost_if
+    libbthost_if \
+    android.hardware.bluetooth@1.0.vendor
 
 # Bluetooth 
 PRODUCT_COPY_FILES += \
@@ -171,7 +176,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5 \
     libstdc++.vendor \
     Snap \
-    vendor.qti.hardware.camera.device@1.0
+    vendor.qti.hardware.camera.device@1.0 \
+    android.frameworks.displayservice@1.0.vendor
 
 # Charger
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -212,7 +218,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.3-service.clearkey
+    android.hardware.drm@1.3-service.clearkey \
+    android.hardware.drm@1.0.vendor \
+    android.hardware.drm@1.1.vendor \
+    android.hardware.drm@1.2.vendor \
+    android.hardware.drm@1.3.vendor
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -325,7 +335,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service-qti
+    android.hardware.power-service-qti
 
 #protobuf
 PRODUCT_COPY_FILES += \
@@ -343,6 +353,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml
 
 # QMI
+$(call inherit-product, external/json-c/Android.configure.mk)
 PRODUCT_PACKAGES += \
     libjson
 
@@ -358,7 +369,21 @@ PRODUCT_PACKAGES += \
     qti-telephony-hidl-wrapper \
     qti_telephony_hidl_wrapper.xml \
     qti-telephony-utils \
-    qti_telephony_utils.xml
+    qti_telephony_utils.xml \
+    android.hardware.secure_element@1.2 \
+    android.hardware.secure_element@1.2.vendor \
+    android.system.net.netd@1.1.vendor \
+    android.hardware.radio@1.5.vendor \
+    android.hardware.radio@1.4.vendor \
+    android.hardware.radio.config@1.2 \
+    android.hardware.radio.config@1.2.vendor \
+    android.hardware.secure_element@1.2.vendor \
+    android.hardware.secure_element@1.1.vendor \
+    android.hardware.secure_element@1.0.vendor \
+    android.hardware.neuralnetworks@1.2 \
+    android.hardware.neuralnetworks@1.2.vendor \
+    android.hardware.radio.deprecated@1.0 \
+    android.hardware.radio.deprecated@1.0.vendor
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -468,3 +493,19 @@ PRODUCT_HOST_PACKAGES += \
 # WFD
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+# TinyXML
+PRODUCT_PACKAGES += \
+    libtinyxml
+
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0-impl \
+    android.hardware.keymaster@4.0-service \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service \
+    android.hardware.keymaster@3.0.vendor \
+    android.hardware.keymaster@4.0.vendor \
+    android.hardware.keymaster@4.1.vendor \
+    android.hardware.gatekeeper@1.0 \
+    android.hardware.gatekeeper@1.0.vendor
