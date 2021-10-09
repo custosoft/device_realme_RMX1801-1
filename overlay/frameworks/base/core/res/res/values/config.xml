@@ -502,4 +502,9 @@
           specified name exists on the device, autofill will be disabled by default. -->
     <string name="config_defaultAutofillService" translatable="false">com.google.android.gms/.autofill.service.AutofillService</string>
 
+    <!-- Control the behavior when the user long presses the power button. -->
+    <integer name="config_longPressOnPowerBehavior">1</integer>
+
+    <!-- Control the behavior when the user presses the power and volume up buttons together. -->
+    <integer name="config_keyChordPowerVolumeUp">1</integer>
 </resources>
